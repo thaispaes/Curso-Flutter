@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_course/methods.dart';
 
 void main() => runApp(const MyApp());
 
@@ -60,9 +59,9 @@ class _HomePageState extends State<HomePage> {
           children: [
             Text(
               isFull ? 'Lotado' : 'Pode Entrar',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 30,
-                color: Colors.white,
+                color: isFull ? Colors.red : Colors.white,
                 fontWeight: FontWeight.w700,
               ),
             ),
