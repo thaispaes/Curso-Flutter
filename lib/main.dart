@@ -25,6 +25,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  int count = 0;
+  bool get isEmpty => count == 0;
+  bool get isFull => count == 20;
+
+  void increment(){
+      setState(() {
+        count++;
+      });
+      print(count);
+  }
+
+  void decrement(){
+    setState(() {
+      count--;
+    });
+    print(count);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,9 +58,9 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Pode Entrar',
-              style: TextStyle(
+            Text(
+              isFull ? 'Lotado' : 'Pode Entrar',
+              style: const TextStyle(
                 fontSize: 30,
                 color: Colors.white,
                 fontWeight: FontWeight.w700,
@@ -57,18 +76,20 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                //Decrement
                 TextButton(
                   style: TextButton.styleFrom(
-                      backgroundColor: Colors.yellow,
+                      backgroundColor: isEmpty ? Colors.yellow.withOpacity(0.2) : Colors.yellow,
                       fixedSize: const Size(100, 100),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(24),
                       )
                   ),
-                  onPressed: decrement,
+                  onPressed: isEmpty ? null : decrement,
                   child: const Text('Saiu',
                     style: TextStyle(
                       color: Colors.black,
@@ -77,15 +98,16 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(width: 64),
+                //Increment
                 TextButton(
                   style: TextButton.styleFrom(
-                      backgroundColor: Colors.yellow,
+                      backgroundColor: isFull ? Colors.yellow.withOpacity(0.2) : Colors.yellow,
                       fixedSize: const Size(100, 100),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(24),
                       )
                   ),
-                  onPressed: increment,
+                  onPressed: isFull ? null : increment,
                   child: const Text('Entrou',
                     style: TextStyle(
                       color: Colors.black,
