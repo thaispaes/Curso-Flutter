@@ -51,7 +51,8 @@ class _HomePageState extends State<HomePage> {
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('/images/Flutter01.jpg'),
-                fit: BoxFit.cover
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(Colors.black45, BlendMode.srcOver)
             )
         ),
         child: Column(
@@ -71,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                 '$count',
                 style: TextStyle(
                   fontSize: 100,
-                  color: Colors.white,
+                  color: isFull ? Colors.red : Colors.white,
                 ),
               ),
             ),
